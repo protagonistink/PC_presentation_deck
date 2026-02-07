@@ -1,7 +1,7 @@
 import puppeteer from 'puppeteer';
 import fs from 'fs/promises';
 
-const SLIDE_COUNT = 19;
+const SLIDE_COUNT = 27;
 const URL = 'http://localhost:5173';
 const OUTPUT_FILE = 'Pacific_Crest_Presentation.pdf';
 

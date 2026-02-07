@@ -1,45 +1,111 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { User, Shield, Zap, Users, Skull } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { User, Zap, Skull, ChevronRight, ChevronLeft } from 'lucide-react';
+
+const characters = [
+    {
+        name: 'PROTAGONIST',
+        role: 'The one who drives the story',
+        icon: <User className="w-12 h-12" />,
+        color: 'text-brand-orange',
+        examples: [
+            { source: 'Finding Nemo', character: 'Marlin' },
+            { source: 'Barbie', character: 'Barbie' },
+            { source: 'Star Wars', character: 'Luke Skywalker' },
+        ]
+    },
+    {
+        name: 'MENTOR',
+        role: 'The guide or teacher',
+        icon: <Zap className="w-12 h-12" />,
+        color: 'text-yellow-400',
+        examples: [
+            { source: 'Harry Potter', character: 'Dumbledore' },
+            { source: 'The Godfather', character: 'Vito Corleone' },
+            { source: 'Barbie', character: 'Weird Barbie / Ruth' },
+        ]
+    },
+    {
+        name: 'NEMESIS / VILLAIN',
+        role: 'The Enemy who DRIVES the Protagonist’s change',
+        icon: <Skull className="w-12 h-12" />,
+        color: 'text-red-500',
+        examples: [
+            { source: 'Silence of the Lambs', character: 'Buffalo Bill the Killer' },
+            { source: 'Star Wars', character: 'Darth Vader' },
+            { source: 'Barbie', character: 'Reality' },
+        ]
+    }
+];
 
 export default function Slide9() {
-    const characters = [
-        { name: 'Protagonist', icon: <User className="w-8 h-8" />, desc: 'The Customer (Business) / The Hero (Story). The one whose world changes.' },
-        { name: 'Villain', icon: <Skull className="w-8 h-8" />, desc: 'The Problem (Business) / The Shadow (Story). What stands in the way.' },
-        { name: 'Mentor', icon: <Zap className="w-8 h-8" />, desc: 'Your Brand (Business) / The Guide (Story). Provides the tool/plan.' },
-        { name: 'Allies', icon: <Users className="w-8 h-8" />, desc: 'Community & Partners. The internal team or external supporters.' },
-        { name: 'Stakes', icon: <Shield className="w-8 h-8" />, desc: 'The Mission. What happens if the journey fails?' },
-    ];
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    const nextSlide = () => {
+        setCurrentIndex((prev) => (prev + 1) % characters.length);
+    };
+
+    const prevSlide = () => {
+        setCurrentIndex((prev) => (prev - 1 + characters.length) % characters.length);
+    };
 
     return (
-        <div className="w-full h-full bg-brand-white text-brand-black p-20 flex flex-col">
-            <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mb-16"
-            >
-                <h1 className="font-serif text-7xl italic">Major Characters</h1>
-                <div className="h-1 w-24 bg-brand-orange mt-4" />
-            </motion.div>
+        <div className="w-full h-full bg-brand-white text-brand-black flex flex-col items-center justify-center p-20 font-sans related">
+            {/* Navigation Overlay */}
+            <div className="absolute inset-0 flex items-center justify-between px-8 pointer-events-none z-20">
+                <button onClick={prevSlide} className="pointer-events-auto p-4 rounded-full hover:bg-black/5 transition-colors">
+                    <ChevronLeft className="w-8 h-8 opacity-50" />
+                </button>
+                <button onClick={nextSlide} className="pointer-events-auto p-4 rounded-full hover:bg-black/5 transition-colors">
+                    <ChevronRight className="w-8 h-8 opacity-50" />
+                </button>
+            </div>
 
-            <div className="grid grid-cols-5 gap-8 flex-1">
-                {characters.map((char, i) => (
-                    <motion.div
+            <AnimatePresence mode="wait">
+                <motion.div
+                    key={currentIndex}
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -50 }}
+                    transition={{ duration: 0.5 }}
+                    className="flex flex-col items-center text-center max-w-4xl w-full"
+                >
+                    <div className={`mb-8 p-6 rounded-full bg-brand-black/5 ${characters[currentIndex].color}`}>
+                        {characters[currentIndex].icon}
+                    </div>
+
+                    <h1 className="font-serif text-8xl mb-4 tracking-tight">
+                        {characters[currentIndex].name}
+                    </h1>
+
+                    <p className="font-sans text-xl uppercase tracking-widest opacity-60 mb-16">
+                        {characters[currentIndex].role}
+                    </p>
+
+                    <div className="grid grid-cols-3 gap-8 w-full text-left">
+                        {characters[currentIndex].examples.map((ex, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.3 + (i * 0.1) }}
+                                className="bg-[#f5f5f5] p-8 rounded-sm border-l-4 border-brand-orange/20"
+                            >
+                                <p className="font-bold text-sm uppercase tracking-wider mb-2 opacity-50">{ex.source}</p>
+                                <p className="font-serif text-2xl">{ex.character}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </motion.div>
+            </AnimatePresence>
+
+            {/* Pagination Dots */}
+            <div className="absolute bottom-12 flex gap-4">
+                {characters.map((_, i) => (
+                    <div
                         key={i}
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: i * 0.1 }}
-                        className="flex flex-col items-center text-center group"
-                    >
-                        <div className="w-24 h-24 rounded-full bg-brand-black text-brand-white flex items-center justify-center mb-6 
-                          group-hover:bg-brand-orange transition-colors duration-500 shadow-xl">
-                            {char.icon}
-                        </div>
-                        <h3 className="font-serif text-2xl mb-3">{char.name}</h3>
-                        <p className="font-sans text-xs uppercase tracking-widest opacity-40 leading-relaxed px-4">
-                            {char.desc}
-                        </p>
-                    </motion.div>
+                        className={`w-3 h-3 rounded-full transition-all duration-300 ${i === currentIndex ? 'bg-brand-orange w-8' : 'bg-black/10'}`}
+                    />
                 ))}
             </div>
         </div>

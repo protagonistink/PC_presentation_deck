@@ -1,141 +1,114 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, Info } from 'lucide-react';
+import { Feather } from 'lucide-react';
 
-const Stage = ({ title, number, x, y, delay, isActive, onClick }) => (
-    <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5, delay }}
-        className="absolute flex flex-col items-center gap-2 cursor-pointer group"
-        style={{ left: `${x}%`, top: `${y}%`, transform: 'translate(-50%, -50%)' }}
-        onClick={onClick}
-    >
-        <div className={`w-10 h-10 rounded-full border flex items-center justify-center text-[10px] font-mono transition-all duration-300 ${isActive ? 'bg-brand-orange border-brand-orange text-brand-white scale-110 shadow-[0_0_20px_rgba(217,78,31,0.4)]' : 'bg-brand-black border-brand-orange text-brand-orange group-hover:bg-brand-orange/10'
-            }`}>
-            {number}
-        </div>
-        <span className={`font-sans text-[10px] uppercase tracking-widest whitespace-nowrap transition-colors duration-300 ${isActive ? 'text-brand-orange font-bold' : 'text-white/40 group-hover:text-white/60'
-            }`}>
-            {title}
-        </span>
-    </motion.div>
-);
+const stages = [
+    { title: "Ordinary World", desc: "Where your brand story begins: real, unpolished, human." },
+    { title: "Call to Adventure", desc: "The spark to evolve; a shift, hunch, or reinvention." },
+    { title: "Refusal of the Call", desc: "The doubt: will anyone care? Can you stand out?" },
+    { title: "Meeting the Mentor", desc: "Guidance appears—clarity, voice, structure." },
+    { title: "Crossing the Threshold", desc: "Leaving the old scripts behind." },
+    { title: "Tests, Allies, Enemies", desc: "Deep story work: rediscovering why you began." },
+    { title: "Approach to Inmost Cave", desc: "The edit bay. Resistance." },
+    { title: "Ordeal", desc: "Confronting sameness. Breaking from the algorithm." },
+    { title: "Reward", desc: "A true voice—unmistakable, resonant, alive." },
+    { title: "The Road Back", desc: "Systemizing your story for scale." },
+    { title: "Resurrection", desc: "Becoming the protagonist your audience believes in." },
+    { title: "Return with the Elixir", desc: "Sharing the story only you can tell." },
+];
 
 export default function Slide8() {
     const [activeStage, setActiveStage] = useState(null);
 
-    const stages = [
-        {
-            title: "Ordinary World",
-            number: "01",
-            x: 15, y: 30,
-            desc: "The hero's starting point. A state of status quo where something is missing or out of balance."
-        },
-        {
-            title: "Call to Adventure",
-            number: "02",
-            x: 30, y: 60,
-            desc: "The disruption. An event or realization that demands the hero leave their comfort zone."
-        },
-        {
-            title: "The Threshold",
-            number: "03",
-            x: 50, y: 80,
-            desc: "The point of no return. The hero commits to the journey and enters the unknown world."
-        },
-        {
-            title: "The Abyss",
-            number: "04",
-            x: 70, y: 60,
-            desc: "The greatest challenge. A moment of death and rebirth where the hero faces their deepest fear."
-        },
-        {
-            title: "The Elixir",
-            number: "05",
-            x: 85, y: 30,
-            desc: "The final transformation. The hero returns with the gift of knowledge, wisdom, or a solution that fixes the ordinary world."
-        },
-    ];
-
     return (
-        <div className="w-full h-full flex flex-col items-center justify-center p-24 bg-brand-black relative overflow-hidden">
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mb-8 text-center"
-            >
-                <span className="text-brand-orange uppercase tracking-[0.3em] font-sans text-xs">Framework</span>
-                <h2 className="text-5xl font-serif text-brand-white mt-4 italic">Storytelling 101: The Hero's Journey</h2>
-            </motion.div>
+        <div className="w-full h-full bg-brand-black text-brand-white flex flex-col items-center justify-center p-20 font-sans related overflow-hidden">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-brand-orange/5 via-black to-black opacity-50" />
 
-            <div className="relative w-full h-64 mt-4">
-                {/* Animated Path */}
-                <svg className="absolute inset-0 w-full h-full overflow-visible">
-                    <motion.path
-                        d="M 15 30 Q 30 90, 50 80 T 85 30"
-                        fill="none"
-                        stroke="rgba(217, 78, 31, 0.2)"
-                        strokeWidth="2"
-                        strokeDasharray="8 8"
-                        initial={{ pathLength: 0 }}
-                        animate={{ pathLength: 1 }}
-                        transition={{ duration: 2, ease: "easeInOut" }}
-                        style={{ width: '100%', height: '100%' }}
-                        viewBox="0 0 100 100"
-                        preserveAspectRatio="none"
-                    />
+            <div className="relative w-[800px] h-[800px] flex items-center justify-center">
+
+                {/* Center Logo */}
+                <div className="absolute z-20 flex flex-col items-center">
+                    <Feather className="w-32 h-32 text-brand-white/80 animate-pulse-slow" strokeWidth={1} />
+                </div>
+
+                {/* The Circle */}
+                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 800 800">
+                    <circle cx="400" cy="400" r="350" fill="none" stroke="currentColor" strokeWidth="1" className="text-white/10" />
+
+                    {/* Active Connection Line */}
+                    {activeStage !== null && (
+                        <motion.line
+                            x1="400" y1="400"
+                            x2={400 + 350 * Math.sin(activeStage * (Math.PI * 2 / 12))}
+                            y2={400 - 350 * Math.cos(activeStage * (Math.PI * 2 / 12))}
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            className="text-brand-orange"
+                            initial={{ pathLength: 0 }}
+                            animate={{ pathLength: 1 }}
+                        />
+                    )}
                 </svg>
 
-                {stages.map((s, i) => (
-                    <Stage
-                        key={i}
-                        {...s}
-                        delay={0.5 + i * 0.2}
-                        isActive={activeStage === i}
-                        onClick={() => setActiveStage(activeStage === i ? null : i)}
-                    />
-                ))}
+                {/* Stages around the circle */}
+                {stages.map((stage, i) => {
+                    const angle = (i * (360 / 12)) - 90; // Start at top (-90deg)
+                    const radius = 350;
+                    const x = 400 + radius * Math.cos(angle * (Math.PI / 180));
+                    const y = 400 + radius * Math.sin(angle * (Math.PI / 180));
+
+                    return (
+                        <motion.div
+                            key={i}
+                            className={`absolute w-4 h-4 rounded-full cursor-pointer z-30 transition-all duration-300 ${activeStage === i ? 'bg-brand-orange scale-150 shadow-[0_0_20px_rgba(255,107,0,0.8)]' : 'bg-white/20 hover:bg-white/50'}`}
+                            style={{
+                                left: x - 8,
+                                top: y - 8
+                            }}
+                            whileHover={{ scale: 1.5 }}
+                            onClick={() => setActiveStage(i)}
+                        >
+                            {/* Label */}
+                            <div
+                                className={`absolute w-48 text-center transition-opacity duration-300 pointer-events-none ${activeStage === i ? 'opacity-100' : 'opacity-40'}`}
+                                style={{
+                                    left: '50%',
+                                    top: angle > 0 && angle < 180 ? '20px' : 'auto',
+                                    bottom: angle > 0 && angle < 180 ? 'auto' : '20px',
+                                    transform: 'translateX(-50%)',
+                                }}
+                            >
+                                <p className={`uppercase text-[10px] tracking-widest font-bold mb-1 ${activeStage === i ? 'text-brand-orange' : 'text-white'}`}>
+                                    {stage.title}
+                                </p>
+                            </div>
+                        </motion.div>
+                    );
+                })}
             </div>
 
-            <div className="h-32 mt-12 w-full max-w-2xl text-center relative">
-                <AnimatePresence mode="wait">
-                    {activeStage !== null ? (
-                        <motion.div
-                            key={activeStage}
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -10 }}
-                            className="bg-brand-orange/5 border border-brand-orange/20 p-6 rounded-lg backdrop-blur-sm"
-                        >
-                            <h3 className="text-brand-orange font-serif text-2xl mb-2">{stages[activeStage].title}</h3>
-                            <p className="font-sans text-white/70 text-sm leading-relaxed">
-                                {stages[activeStage].desc}
-                            </p>
-                        </motion.div>
-                    ) : (
-                        <motion.div
-                            key="placeholder"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            className="flex flex-col items-center justify-center h-full opacity-30 group"
-                        >
-                            <Info className="w-5 h-5 mb-2 text-brand-orange group-hover:animate-pulse" />
-                            <p className="font-sans text-[10px] uppercase tracking-[0.3em]">Click a stage to explore</p>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-            </div>
+            {/* Description Overlay */}
+            <AnimatePresence mode="wait">
+                {activeStage !== null && (
+                    <motion.div
+                        key={activeStage}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        className="absolute bottom-12 z-40 bg-brand-white/10 backdrop-blur-md p-8 rounded-sm border-l-4 border-brand-orange max-w-2xl text-center"
+                    >
+                        <h3 className="font-serif text-3xl mb-2">{stages[activeStage].title}</h3>
+                        <p className="font-sans text-brand-white/80">{stages[activeStage].desc}</p>
+                    </motion.div>
+                )}
+            </AnimatePresence>
 
-            <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 2 }}
-                className="mt-12 text-brand-white/20 font-sans text-center max-w-lg text-[10px] leading-relaxed uppercase tracking-widest"
-            >
-                Transformation is the only metric that matters.
-            </motion.p>
+            {/* Hint */}
+            {activeStage === null && (
+                <p className="absolute bottom-12 opacity-30 animate-pulse text-xs uppercase tracking-widest">
+                    Select a stage to explore the journey
+                </p>
+            )}
         </div>
     );
 }
-
