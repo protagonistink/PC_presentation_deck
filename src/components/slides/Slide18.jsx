@@ -1,35 +1,36 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-export default function Slide10() {
+export default function Slide18() {
     return (
-        <div className="w-full h-full flex flex-col items-center justify-center p-24 bg-brand-black text-center relative overflow-hidden">
-            {/* Background grain/texture effect placeholder */}
-            <div className="absolute inset-0 opacity-5 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]" />
-
+        <div className="w-full h-full bg-brand-black text-white flex flex-col items-center justify-center p-20 font-sans">
             <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, ease: 'easeOut' }}
-                className="max-w-4xl relative z-10"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="text-center"
             >
-                <span className="text-brand-orange uppercase tracking-[0.5em] font-sans text-xs mb-12 block font-bold">Conclusion</span>
-                <h2 className="text-8xl md:text-9xl font-serif text-brand-white italic mb-12 leading-tight">
-                    Your Shared Narrative
-                </h2>
-                <div className="w-48 h-px bg-brand-orange/40 mx-auto mb-12" />
-                <p className="text-brand-white/80 font-sans text-2xl tracking-widest uppercase font-light">
-                    The story you tell is the <span className="text-brand-white font-bold italic">future you build</span>.
-                </p>
-            </motion.div>
+                <span className="text-brand-orange uppercase tracking-[0.5em] text-xs mb-8 block font-bold">Act I</span>
+                <h1 className="font-serif text-[140px] leading-none mb-16 italic">The Foundation</h1>
+                <div className="h-px w-32 bg-brand-orange/40 mx-auto mb-16" />
 
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 0.2 }}
-                transition={{ delay: 1.5, duration: 1 }}
-                className="absolute bottom-12 text-[10px] uppercase font-sans tracking-[0.6em] text-white"
-            >
-                Protagonist Ink © 2024
+                <div className="grid grid-cols-2 gap-24 max-w-4xl mx-auto text-left">
+                    <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.5 }}
+                    >
+                        <p className="text-brand-orange uppercase tracking-widest text-[10px] mb-4 font-bold opacity-60">Question 01</p>
+                        <p className="text-4xl font-serif italic text-white/90">Why are we here?</p>
+                    </motion.div>
+                    <motion.div
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.7 }}
+                    >
+                        <p className="text-brand-orange uppercase tracking-widest text-[10px] mb-4 font-bold opacity-60">Question 02</p>
+                        <p className="text-4xl font-serif italic text-white/90">Why talk about story?</p>
+                    </motion.div>
+                </div>
             </motion.div>
         </div>
     );

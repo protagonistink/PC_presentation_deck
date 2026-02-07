@@ -9,16 +9,19 @@ export default function Slide13() {
                 animate={{ opacity: 1, y: 0 }}
                 className="text-center max-w-4xl"
             >
-                <span className="text-brand-orange uppercase tracking-[0.4em] font-sans text-sm mb-12 block">Case Study 03</span>
-                <h1 className="font-serif text-8xl md:text-9xl mb-12 leading-none">
-                    What is <br />
-                    <span className="italic">Pacific Crest’s</span> <br />
-                    story?
+                <h1 className="font-serif text-[120px] mb-12 leading-none">
+                    Once upon <br />
+                    <span className="italic text-brand-orange">a time...</span>
                 </h1>
-                <div className="h-px w-64 bg-brand-black/10 mx-auto mb-12" />
-                <p className="font-sans text-xs uppercase tracking-[0.5em] opacity-30">
-                    The question we define today.
+                <p className="font-serif text-4xl mb-12 italic opacity-80">
+                    There was an organization called Pacific Crest...
                 </p>
+                <div className="h-px w-64 bg-brand-black/10 mx-auto mb-12" />
+                <div className="flex items-center justify-center gap-4 text-brand-orange">
+                    <span className="font-sans text-xs uppercase tracking-[0.4em] font-bold">Exercise 01</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-orange/30" />
+                    <span className="font-sans text-xs uppercase tracking-[0.4em]">8-10 Minutes + Share Out</span>
+                </div>
             </motion.div>
         </div>
     );

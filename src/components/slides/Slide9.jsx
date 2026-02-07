@@ -4,11 +4,11 @@ import { User, Shield, Zap, Users, Skull } from 'lucide-react';
 
 export default function Slide9() {
     const characters = [
-        { name: 'Protagonist', icon: <User className="w-8 h-8" />, desc: 'The hero of the journey. The one who transforms.' },
-        { name: 'Villain', icon: <Skull className="w-8 h-8" />, desc: 'The force of opposition. Represents the stakes.' },
-        { name: 'Mentor', icon: <Zap className="w-8 h-8" />, desc: 'The guide. Provides tools or wisdom.' },
-        { name: 'Allies', icon: <Users className="w-8 h-8" />, desc: 'The support system. Helps along the way.' },
-        { name: 'Enemies', icon: <Shield className="w-8 h-8" />, desc: 'Minor obstacles or gatekeepers.' },
+        { name: 'Protagonist', icon: <User className="w-8 h-8" />, desc: 'The Customer (Business) / The Hero (Story). The one whose world changes.' },
+        { name: 'Villain', icon: <Skull className="w-8 h-8" />, desc: 'The Problem (Business) / The Shadow (Story). What stands in the way.' },
+        { name: 'Mentor', icon: <Zap className="w-8 h-8" />, desc: 'Your Brand (Business) / The Guide (Story). Provides the tool/plan.' },
+        { name: 'Allies', icon: <Users className="w-8 h-8" />, desc: 'Community & Partners. The internal team or external supporters.' },
+        { name: 'Stakes', icon: <Shield className="w-8 h-8" />, desc: 'The Mission. What happens if the journey fails?' },
     ];
 
     return (

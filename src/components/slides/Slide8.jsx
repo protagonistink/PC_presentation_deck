@@ -51,10 +51,10 @@ export default function Slide8() {
             desc: "The greatest challenge. A moment of death and rebirth where the hero faces their deepest fear."
         },
         {
-            title: "The Return",
+            title: "The Elixir",
             number: "05",
             x: 85, y: 30,
-            desc: "The homecoming. The hero returns to the ordinary world, but is fundamentally transformed."
+            desc: "The final transformation. The hero returns with the gift of knowledge, wisdom, or a solution that fixes the ordinary world."
         },
     ];
 

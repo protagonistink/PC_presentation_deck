@@ -54,7 +54,7 @@ export default function Slide3() {
                 <div className="absolute right-0 top-[65%] w-full h-px bg-brand-orange z-10" />
 
                 {/* Bio Box */}
-                <div className="absolute top-[50%] right-[-10%] translate-y-[-50%] z-20 w-[85%] bg-brand-black/80 backdrop-blur-md p-8 shadow-2xl border-r-4 border-brand-orange">
+                <div className="absolute top-1/2 right-12 -translate-y-1/2 z-20 w-[85%] bg-brand-black/80 backdrop-blur-md p-8 shadow-2xl border-r-4 border-brand-orange">
                     <p className="text-[13px] leading-relaxed text-brand-white/80">
                         A connector working at the intersection of arts, education, and community. Amy serves as a Learning Specialist at the <span className="text-brand-orange font-bold">LA Phil</span> and Managing Director of Decoda. With a 25-year career spanning <span className="text-brand-orange font-bold">Carnegie Hall and Lincoln Center</span>, she develops programs that inspire collective action.
                     </p>
